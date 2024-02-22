@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
-	"time"
 
 	airbyte "github.com/kollalabs/airbyte-go"
 )
@@ -52,9 +51,7 @@ func (h APISource) Spec(logTracker airbyte.LogTracker) (*airbyte.ConnectorSpecif
 						Description: "api key to access http source, valid uuid",
 						Examples:    []string{"xxxx-xxxx-xxxx-xxxx"},
 						PropertyType: airbyte.PropertyType{
-							Type: []airbyte.PropType{
-								airbyte.String,
-							},
+							Type: airbyte.String,
 						},
 					},
 				},
@@ -347,9 +344,10 @@ func (h APISource) Read(sourceCfgPath string, prevStatePath string, configuredCa
 		}
 	}
 
-	return tracker.State(&LastSyncTime{
-		Timestamp: time.Now().UnixMilli(),
-	})
+	//	return tracker.State(&LastSyncTime{
+	//		Timestamp: time.Now().UnixMilli(),
+	//	})
+	return nil
 }
 
 func httpGet(uri string, v interface{}) error {
