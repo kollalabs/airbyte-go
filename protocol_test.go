@@ -28,7 +28,7 @@ func TestStreamState(t *testing.T) {
 		t.Error(err)
 	}
 
-	expected := `{"type":"STATE","state":{"state_type":"STREAM","stream":{"stream_descriptor":{"name":"test","namespace":"testnamespace"},"stream_state":{"FieldA":"test","FieldB":1}}}}`
+	expected := `{"type":"STATE","state":{"type":"STREAM","stream":{"stream_descriptor":{"name":"test","namespace":"testnamespace"},"stream_state":{"FieldA":"test","FieldB":1}}}}`
 	o := buff.String()
 	if strings.TrimSpace(o) != strings.TrimSpace(expected) {
 		t.Errorf("Expected\n\t%s \ngot\n\t%s", expected, o)

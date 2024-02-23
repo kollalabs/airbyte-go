@@ -89,7 +89,7 @@ type record struct {
 
 // state is used to store data between syncs - useful for incremental syncs and state storage
 type state struct {
-	StateType string `json:"state_type"`
+	Type string `json:"type"`
 	// only one of stream, global, or data may be set
 	Stream *StreamState `json:"stream,omitempty"`
 	//	Global *GlobalState `json:"global,omitempty"`
@@ -300,7 +300,7 @@ func newStateWriter(w io.Writer) StateWriter {
 		err := write(w, &message{
 			Type: msgTypeState,
 			state: &state{
-				StateType: "STREAM",
+				Type: "STREAM",
 				Stream: &StreamState{
 					StreamDescriptor: d,
 					StreamState:      ss,
